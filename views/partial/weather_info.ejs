@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Info</title>
+  <link rel="stylesheet" href="/test.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="mx-auto py-4">
+    <div class="four" style="background-color: rgba(240, 248, 255, 0.486)">
+          
+      <div>
+        <h2 style="font-size: 1.25rem; background-color: rgba(240, 248, 255, 0.486);">Weather Data of <%= data.name %></h2>
+      
+      </div>
+      <br>
+      <div class="sub-four">
+        <div class="sub1">
+          <div>
+            <p>Sunrise Time</p>
+          </div>
+          <div>
+            <p><%= new Date(data.sys.sunrise * 1000).toLocaleTimeString() %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="sub2">
+          <div>
+            <p>Sunset Time</p>
+          </div>
+          <div>
+            <p><%= new Date(data.sys.sunset * 1000).toLocaleTimeString() %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="sub3">
+          <div>
+            <p>Wind Speed</p>
+          </div>
+          <div>
+            <p><%= data.wind.speed %>m/s</p>
+          </div>
+        </div>
+        <hr>
+        <div class="sub4">
+          <div>
+            <p>Longitude</p>
+          </div>
+          <div>
+            <p> <%= data.coord.lon %></p>
+          </div>
+        </div>
+        <hr>
+        <div class="sub5">
+          <div>
+            <p>Latitude</p>
+          </div>
+          <div>
+            <p> <%= data.coord.lat %></p>
+          </div>          
+          </div>
+        </div>
+        <hr>
+             
+      </div>
+  </div>
+  
+  </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    .font {
+      font-size: 5rem;
+      font-weight: bold;
+    }
+  .today {
+    font-size: 1.6rem;
+  }
+  
+  
+  </style>
+
+</head>
+<body>
+    
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          
+  
+          
+  
+          <form action="/submit" method="post" class="col-mod-6 m-auto py-5">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search City/Location..." aria-label="Recipient's username" aria-describedby="button-addon2" name="fName">
+              <button class="btn btn-outline-Dark" type="submit" id="button-addon2">Search</button>
+            </div>
+            </form>
+        </div>
+      </div>
+      <div class="container">
+        <div id="center-hero" class="px-4 py-5 my-5 text-center">
+          <svg  xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-cloud-sun" viewBox="0 0 16 16">
+            <path d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z"/>
+            <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+          </svg>
+        
+        
+          <h1  class="display-5 fw-bold text-body-emphasis">Your Ultimate Weather Companion</h1>
+          <div class="col-lg-6 mx-auto">
+            <p  class="lead mb-4">Stay updated with real-time weather information! Our app provides accurate forecasts and detailed conditions, ensuring you're always prepared for any weather, anywhere. Easy to use and always reliable</p>
+            
+          </div>
+        </div>
+
+      </div>
+      <div  id="footer-text" class="container">
+        <footer  class="d-flex flex-wrap justify-content-center align-items-center py-5 mt-5">
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <span class="mb-3 mb-md-0 text-body-secondary">© 2024 My Weather App , All rights reserved</span>
+            </div>
+        </footer>
+      </div>
+    
+    
+  <!-- <form action="/submit" method="post" class="col-mod-6 m-auto py-5">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search city" aria-label="Recipient's username" aria-describedby="button-addon2" name="fName">
+    <button class="btn btn-outline-Dark" type="submit" id="button-addon2">Search</button>
+  </div>
+  </form> -->
+
+  <!-- <form action="/submit" method="post">
+    <label for="fName">City Name:</label>
+    <input type="text" id="fName" name="fName">
+    <button type="submit">Get Weather</button>
+  </form> -->
+  
+  <% if(locals.error) {%>
+    <p style="text-align: center;"> <%= error %></p>
+    <% } %>
+  <% if(locals.data) {%>
+    <div class="px-4 py-0 my-0 text-center">
+      <h1 class="display-5 fw-bold text-body-emphasis"><%= data.name %> Weather Forecast</h1>
+      <div class="col-lg-6 mx-auto py-4">
+        <p class="lead mb-4"><%= formattedDate %></p>
+        <p><%= data.weather[0].description %></p>
+        <% if( data.weather[0].description == "overcast clouds") {%>
+          <video width="256" height="256" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/17102/17102874.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="">
+            <source src="https://cdn-icons-mp4.flaticon.com/512/17102/17102874.mp4" type="video/mp4">
+        </video>         
+        <% } %>
+        <% if( data.weather[0].description == "clear sky") { %>
+          <video width="256" height="256" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/17102/17102813.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="">
+            <source src="https://cdn-icons-mp4.flaticon.com/512/17102/17102813.mp4" type="video/mp4">
+        </video>
+        <% } %>
+        <% if( data.weather[0].description == "haze") { %>
+          <video width="256" height="256" preload="none" 
+    style="background: transparent url('https://cdn-icons-png.flaticon.com/512/6454/6454995.png') 50% 50% / contain no-repeat;" 
+    autoplay="autoplay" loop="true" muted="muted" playsinline="">
+    <source src="https://cdn-icons-mp4.flaticon.com/512/6454/6454995.mp4" type="video/mp4">
+</video>
+
+        <% } %>
+        <% if( data.weather[0].description == "rain" || data.weather[0].description == "light rain" || data.weather[0].description =="light intensity shower rain" ) { %>
+          <video width="256" height="256" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/17102/17102963.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="">
+            <source src="https://cdn-icons-mp4.flaticon.com/512/17102/17102963.mp4" type="video/mp4">
+        </video>
+        <% } %>
+      </div>
+      <div class="col-lg-6 mx-auto py-4">
+        <span class="font"><%= data.main.temp_celsius %>°C</span>
+      </div>
+      <div class="mx-1 py-1">
+      <span class="today">Weather Today in <%= data.name %></span>
+      <br>
+      <span style="text-align: center;font-size: 1rem;">Min Temp | Max Temp</span>
+      <p style="text-align: center;"><%= (data.main.temp_min -273.15).toFixed(2) %>°C | <%= (data.main.temp_max  - 273.15).toFixed(2)%>°C</p>
+      </div>
+    </div>
+    <script>
+      document.getElementById('center-hero').style.display = 'none';
+      document.getElementById('footer-text').style.display = 'none';
+      
+    </script>
+  <%- include("partial/test.ejs") %>
+  <%- include("partial/weather_info.ejs") %>
+  <%- include("partial/footer.ejs") %>
+  <% } %>
+  </div>
+</body>
+</html>
