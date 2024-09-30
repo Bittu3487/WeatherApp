@@ -6,6 +6,8 @@ import env from "dotenv";
 const app = express();
 const port = 3000;
 env.config();
+const API_URL = process.env.API_URL;
+const API_KEY = process.env.API_KEY;
 
 
 // Set EJS as templating engine
@@ -31,7 +33,7 @@ app.post("/submit", async (req, res) => {
   const cityName = req.body.fName;
   // const apiKey = process.env.API_KEY;
   try {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.API_KEY}`);
+    const response = await axios.get(`${API_URL}?q=${cityName}&appid=${API_KEY}`);
     const result = response.data;
     const temperatureInCelsius = result.main.temp - 273.15;
     result.main.temp_celsius = temperatureInCelsius.toFixed(2);
